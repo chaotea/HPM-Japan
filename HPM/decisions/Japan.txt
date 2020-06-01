@@ -1918,7 +1918,7 @@ political_decisions = {
 	# ====================
 	# HPM-Japan
 	# ====================
-	plantations_japan = {
+	plantations_in_japan = {
 		picture = tea_production
 		potential = {
 			tag = JAP
