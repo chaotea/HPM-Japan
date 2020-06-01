@@ -1239,7 +1239,7 @@ political_decisions = {
 				life_rating = 25
 				secede_province = THIS
 				add_core = THIS
-				change_province_name = "Parumira Kanshō"
+				change_province_name = "Parumira Kansho"
 			}
 			658 = {
 				add_core = THIS
