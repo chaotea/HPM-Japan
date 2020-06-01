@@ -820,7 +820,7 @@ country_event = {
 
     trigger = {
         tag = TKG
-        year = 1850
+        year = 1860
         OR = {
             government = absolute_monarchy
             government = prussian_constitutionalism
