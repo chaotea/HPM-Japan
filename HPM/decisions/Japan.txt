@@ -1,4 +1,7 @@
 political_decisions = {
+	# ====================
+	# HPM
+	# ====================
 	commodore_perry_expedition = {
 		picture = commodore_perry_expedition
 		potential = {
@@ -415,13 +418,13 @@ political_decisions = {
 			civilized = yes
 			idealism = 1
 			OR = {
-			AND = {
-				tag = JAP
-				TKG = { exists = no }
+				AND = {
+					tag = JAP
+					TKG = { exists = no }
 				}
-			AND = {
-				tag = TKG
-				JAP = { exists = no }
+				AND = {
+					tag = TKG
+					JAP = { exists = no }
 				}
 			}
 		}
@@ -431,7 +434,7 @@ political_decisions = {
 			random_owned = {
 				limit = {
 					owner = { school_reforms = no_schools }
-					}
+				}
 				owner = { social_reform = low_schools }
 			}
 		}
@@ -456,14 +459,6 @@ political_decisions = {
 			remove_country_modifier = uncivilized_isolationism
 			prestige = 10
 			political_reform = wealth_weighted_voting
-			random_owned = {
-				limit = {
-					owner = { political_parties = underground_parties }
-				}
-				owner = {
-					political_reform = harassment
-				}
-			}
 			random_owned = {
 				limit = {
 					owner = { debt_law = peonage }
@@ -606,7 +601,6 @@ political_decisions = {
 			is_our_vassal = KOR
 			NOT = { truce_with = KOR }
 			KOR = {
-				civilized = yes
 				in_sphere = THIS
 				NOT = {
 					any_owned_province = {
@@ -618,6 +612,7 @@ political_decisions = {
 		effect = {
 			set_country_flag = annexed_korea
 			badboy = 5
+			add_accepted_culture = korean
 			any_country = {
 				limit = {
 					is_culture_group = east_asian
@@ -658,6 +653,13 @@ political_decisions = {
 					attacker_goal = { casus_belli = conquest_any }
 					defender_goal = { casus_belli = become_independent }
 				}
+			}
+			any_owned = {
+				limit = {
+					is_core = KOR
+					NOT = { is_core = JAP }
+				}
+				add_core = JAP
 			}
 		}
 		ai_will_do = {
@@ -1094,21 +1096,21 @@ political_decisions = {
 				tag = TKG
 			}
 			owns = 1654
-			owns = 2525
 			NOT = { has_country_flag = bonin_administration }
 		}
 		allow = {
 			civilized = yes
-			owns = 1654
-			owns = 2525
+			owns = 1654 # Bonin
 		}
 		effect = {
 			prestige = 1
 			1654 = {
-				change_province_name = "Iwo Jima"
+				life_rating = 20
+				change_province_name = "Io To"
 			}
 			2525 = {
-				life_rating = 15
+				life_rating = 25
+				secede_province = THIS
 				add_core = THIS
 				change_province_name = "Minami Torishima"
 				state_scope = {
@@ -1116,6 +1118,45 @@ political_decisions = {
 				}
 			}
 			set_country_flag = bonin_administration
+		}
+	}
+	saipan_administration = {
+		picture = meiji_court
+		potential = {
+			OR = {
+				tag = JAP
+				tag = TKG
+			}
+			owns = 1654
+			NOT = { has_country_flag = saipan_administration }
+		}
+		allow = {
+			civilized = yes
+			owns = 1654 # Bonin
+			owns = 2525 # Marcus
+			NOT = { owns = 2517 } # Guam
+		}
+		effect = {
+			prestige = 1
+			2517 = { # Guam
+				owner = {
+					relation = { who = THIS value = -200 }
+				}
+				life_rating = 10
+				secede_province = THIS
+				add_core = THIS
+				remove_core = PHL
+				change_province_name = "Omiyato"
+			}
+			2521 = { # Saipan
+				life_rating = 5
+				secede_province = THIS
+				add_core = THIS
+				state_scope = {
+					change_region_name = "Saipan"
+				}
+			}
+			set_country_flag = saipan_administration
 		}
 	}
 	taiwan_administration = {
@@ -1142,26 +1183,104 @@ political_decisions = {
 			prestige = 1
 			2681 = {
 				add_core = TAI
+				add_core = THIS
 				remove_core = FJN
+				remove_core = CHI
 				change_province_name = "Taihoku"
 			}
 			2562 = {
 				add_core = TAI
+				add_core = THIS
 				remove_core = FJN
+				remove_core = CHI
 				change_province_name = "Karenko"
 			}
 			2406 = {
 				add_core = TAI
+				add_core = THIS
 				remove_core = FJN
+				remove_core = CHI
 				change_province_name = "Hoko"
 			}
 			1485 = {
 				add_core = TAI
+				add_core = THIS
 				remove_core = FJN
+				remove_core = CHI
 				change_province_name = "Tainan Cho"
 				state_scope = { change_region_name = "Takasago" }
 			}
 			set_country_flag = taiwan_administration
+		}
+	}
+	hawaii_administration = {
+		picture = meiji_court
+		potential = {
+			OR = {
+				tag = JAP
+				tag = TKG
+			}
+			owns = 658 # Hawaii
+			NOT = { has_country_flag = hawaii_administration }
+		}
+		allow = {
+			civilized = yes
+			owns = 658
+		}
+		effect = {
+			prestige = 1
+			2623 = { #Midway and Wake Islands
+				life_rating = 25
+				secede_province = THIS
+				add_core = THIS
+				change_province_name = "Middoushima"
+			}
+			2526 = { #Palmyra and Line Islands
+				life_rating = 25
+				secede_province = THIS
+				add_core = THIS
+				change_province_name = "Parumira Kanshō"
+			}
+			658 = {
+				add_core = THIS
+				change_province_name = "Hawaito"
+				state_scope = {
+					change_region_name = "Hawai"
+				}
+			}
+			set_country_flag = hawaii_administration
+		}
+	}
+	inherit_hawaii = {
+		picture = meiji_court
+		potential = {
+			OR = {
+				tag = QNG
+				AND = {
+					tag = JAP
+					has_country_modifier = fukoku_kyohei
+				}
+				AND = {
+					tag = TKG
+					has_country_modifier = fukoku_kyohei
+				}
+			}
+			exists = HAW
+			NOT = { has_global_flag = hawaii_inherited }
+			HAW = { ai = yes }
+		}
+		allow = {
+			civilized = yes
+			war = no
+			HAW = { war = no }
+			OR = {
+				HAW = { part_of_sphere = no }
+				HAW = { in_sphere = THIS }
+			}
+		}
+		effect = {
+			set_global_flag = hawaii_inherited
+			inherit = HAW
 		}
 	}
 	inherit_ryukyu = {
@@ -1192,9 +1311,6 @@ political_decisions = {
 		}
 		effect = {
 			set_global_flag = ryukyu_inherited
-			1678 = { add_core = THIS }
-			1679 = { add_core = THIS }
-			random_owned = { limit = { owner = { tag = QNG } } 1678 = { add_core = CHI } 1679 = { add_core = CHI } }
 			inherit = RYU
 		}
 		ai_will_do = {
@@ -1217,19 +1333,10 @@ political_decisions = {
 			RYU = { exists = no }
 		}
 		effect = {
+			prestige = 1
 			set_country_flag = ryukyu_is_japanese
 			1678 = { add_core = THIS }
 			1679 = { add_core = THIS }
-			random_country = {
-				limit = {
-					owns = 1678
-					NOT = { tag = THIS }
-				}
-				relation = {
-					who = THIS
-					value = -100
-				}
-			}
 		}
 		ai_will_do = {
 			factor = 1
@@ -1645,19 +1752,19 @@ political_decisions = {
 			random_owned = {
 				limit = {
 					owner = { school_reforms = acceptable_schools }
-					}
+				}
 				owner = { social_reform = good_schools }
 			}
 			random_owned = {
 				limit = {
 					owner = { school_reforms = low_schools }
-					}
+				}
 				owner = { social_reform = acceptable_schools }
 			}
 			random_owned = {
 				limit = {
 					owner = { school_reforms = no_schools }
-					}
+				}
 				owner = { social_reform = low_schools }
 			}
 		}
@@ -1747,6 +1854,9 @@ political_decisions = {
 		}
 		ai_will_do = { factor = 1 }
 	}
+	# ====================
+	# HPM-Japan
+	# ====================
 	plantations_japan = {
 		picture = tea_production
 		potential = {
