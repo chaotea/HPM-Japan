@@ -586,6 +586,7 @@ political_decisions = {
 		}
 	}
 	annex_korea = {
+		picture = annex_korea
 		potential = {
 			OR = {
 				tag = JAP
@@ -598,8 +599,8 @@ political_decisions = {
 		}
 		allow = {
 			war = no
+			is_greater_power = yes
 			is_our_vassal = KOR
-			NOT = { truce_with = KOR }
 			KOR = {
 				in_sphere = THIS
 				NOT = {
@@ -612,7 +613,6 @@ political_decisions = {
 		effect = {
 			set_country_flag = annexed_korea
 			badboy = 5
-			add_accepted_culture = korean
 			any_country = {
 				limit = {
 					is_culture_group = east_asian
@@ -653,13 +653,6 @@ political_decisions = {
 					attacker_goal = { casus_belli = conquest_any }
 					defender_goal = { casus_belli = become_independent }
 				}
-			}
-			any_owned = {
-				limit = {
-					is_core = KOR
-					NOT = { is_core = JAP }
-				}
-				add_core = JAP
 			}
 		}
 		ai_will_do = {
@@ -1870,7 +1863,7 @@ political_decisions = {
 			}
 		}
 		allow = {
-			analytic_philosophy = 1
+			idealism = 1
 			state_n_government = 1
 			war = no
 		}
@@ -1894,7 +1887,6 @@ political_decisions = {
 			}
 		}
 		allow = {
-			year = 1875
 			analytic_philosophy = 1
 			state_n_government = 1
 			war = no
@@ -1950,5 +1942,183 @@ political_decisions = {
 			}
 		}
 		ai_will_do = { factor = 0 }
+	}
+	claim_vietnam = {
+		picture = map_indochina
+		potential = {
+			tag = JAP
+			has_country_modifier = fukoku_kyohei
+			DAI = { exists = yes }
+			NOT = { has_country_flag = claimed_vietnam }
+		}
+		allow = {
+			war = no
+			war_policy = jingoism
+			total_amount_of_ships = 20
+			breech_loaded_rifles = 1
+		}
+		effect = {
+			set_country_flag = claimed_vietnam
+			badboy = 5
+			DAI_1369 = { add_core = THIS }
+			DAI_1375 = { add_core = THIS }
+			DAI_1380 = { add_core = THIS }
+			DAI = { relation = { who = THIS value = -200 } }
+		}
+	}
+	claim_the_philippines = {
+		picture = map_philippines
+		potential = {
+			tag = JAP
+			has_country_modifier = fukoku_kyohei
+			NOT = { has_country_flag = claimed_the_philippines }
+		}
+		allow = {
+			war = no
+			war_policy = jingoism
+			total_amount_of_ships = 20
+			breech_loaded_rifles = 1
+		}
+		effect = {
+			set_country_flag = claimed_the_philippines
+			badboy = 5
+			SPA_1455 = { add_core = THIS }
+			SPA_1459 = { add_core = THIS }
+			SPA_1463 = { add_core = THIS }
+			1455 = { owner = { relation = { who = THIS value = -200 } } } # Manila
+		}
+	}
+	integrate_korea = {
+		picture = annex_korea
+		potential = {
+			tag = JAP
+			is_greater_power = yes
+			owns = 1624 # Seoul
+			KOR = { exists = no }
+			NOT = { has_country_flag = integrated_korea }
+		}
+		allow = {
+			war = no
+			is_greater_power = yes
+			nationalism_n_imperialism = 1
+			KOR = {
+				any_core = { owned_by = THIS }
+			}
+		}
+		effect = {
+			set_country_flag = integrated_korea
+			add_accepted_culture = korean
+			any_owned = {
+				limit = {
+					is_core = KOR
+					NOT = { is_core = JAP }
+				}
+				add_core = JAP
+			}
+			1619 = {
+				change_province_name = "Heijo" # Pyongyang
+				state_scope = { change_region_name = "Heian" } # Pyongyang
+			}
+			1627 = {
+				state_scope = { change_region_name = "Kokaido" } # Sariwon
+			}
+			1624 = {
+				change_province_name = "Keijo" # Seoul
+				state_scope = { change_region_name = "Keikido" } # Hanseong
+			}
+			1632 = {
+				change_province_name = "Pusan" # Pusan
+				state_scope = { change_region_name = "Keisho" } # Busan
+			}
+		}
+	}
+	integrate_vietnam = {
+		picture = map_indochina
+		potential = {
+			tag = JAP
+			is_greater_power = yes
+			owns = 1369 # Hanoi
+			owns = 1380 # Saigon
+			DAI = { exists = no }
+			NOT = { has_country_flag = integrated_vietnam }
+		}
+		allow = {
+			war = no
+			is_greater_power = yes
+			nationalism_n_imperialism = 1
+			DAI = {
+				any_core = { owned_by = THIS }
+			}
+		}
+		effect = {
+			set_country_flag = integrated_vietnam
+			add_accepted_culture = vietnamese
+			any_owned = {
+				limit = {
+					is_core = DAI
+					NOT = { is_core = JAP }
+				}
+				add_core = JAP
+			}
+			1369 = {
+				change_province_name = "Kanai" # Hanoi
+			}
+		}
+	}
+	integrate_the_philippines = {
+		picture = map_philippines
+		potential = {
+			tag = JAP
+			is_greater_power = yes
+			owns = 1455 # Manila
+			PHL = { exists = no }
+			NOT = { has_country_flag = integrated_the_philippines }
+		}
+		allow = {
+			war = no
+			is_greater_power = yes
+			nationalism_n_imperialism = 1
+			PHL = {
+				any_core = { owned_by = THIS }
+			}
+		}
+		effect = {
+			set_country_flag = integrated_the_philippines
+			add_accepted_culture = filipino
+			any_owned = {
+				limit = {
+					is_core = PHL
+					NOT = { is_core = JAP }
+				}
+				add_core = JAP
+			}
+			1455 = {
+				change_province_name = "Shinju" # Manila (Pearl)
+			}
+		}
+	}
+	expedition_to_portugal = {
+		picture = conquest
+		potential = {
+			tag = JAP
+			is_greater_power = yes
+			war_policy = jingoism
+			NOT = { has_country_flag = expedition_to_portugal }
+		}
+		allow = {
+			is_greater_power = yes
+			high_sea_battle_fleet = 1
+			invention = gas_attack_capability
+			invention = gas_defense_capability
+			invention = trench_systems
+		}
+		effect = {
+			set_country_flag = expedition_to_portugal
+			badboy = 10
+			POR_518 = { add_core = THIS }
+			POR_521 = { add_core = THIS }
+			POR_525 = { add_core = THIS }
+			521 = { owner = { relation = { who = THIS value = -200 } } } # Lisbon
+		}
 	}
 }
