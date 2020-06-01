@@ -1855,6 +1855,75 @@ political_decisions = {
 		ai_will_do = { factor = 1 }
 	}
 	# ====================
+	# HFM
+	# ====================
+	adopt_western_calendar = {
+		picture = japanese_calendar
+		potential = {
+			tag = JAP
+			OR = {
+				is_greater_power = yes
+				civilized = yes
+			}
+			NOT = {
+				has_country_flag = western_calendar
+			}
+		}
+		allow = {
+			analytic_philosophy = 1
+			state_n_government = 1
+			war = no
+		}
+		effect = {
+			prestige = 10
+			years_of_research = 0.5
+			set_country_flag = western_calendar
+		}
+		ai_will_do = { factor = 1 }
+	}
+	technical_fine_arts_school = {
+		picture = technical_fine_arts_school
+		potential = {
+			tag = JAP
+			OR = {
+				is_greater_power = yes
+				civilized = yes
+			}
+			NOT = {
+				has_country_flag = technical_fine_arts_school
+			}
+		}
+		allow = {
+			year = 1875
+			analytic_philosophy = 1
+			state_n_government = 1
+			war = no
+		}
+		effect = {
+			prestige = 5
+			set_country_flag = technical_fine_arts_school
+			random_owned = {
+				limit = {
+					owner = { school_reforms = acceptable_schools }
+				}
+				owner = { social_reform = good_schools }
+			}
+			random_owned = {
+				limit = {
+					owner = { school_reforms = low_schools }
+				}
+				owner = { social_reform = acceptable_schools }
+			}
+			random_owned = {
+				limit = {
+					owner = { school_reforms = no_schools }
+				}
+				owner = { social_reform = low_schools }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+	# ====================
 	# HPM-Japan
 	# ====================
 	plantations_japan = {
