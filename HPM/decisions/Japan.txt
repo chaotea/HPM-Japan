@@ -603,10 +603,9 @@ political_decisions = {
 		}
 		allow = {
 			war = no
-			is_our_vassal = KOR
+			year = 1870
 			NOT = { truce_with = KOR }
 			KOR = {
-				civilized = yes
 				in_sphere = THIS
 				NOT = {
 					any_owned_province = {
@@ -1093,14 +1092,13 @@ political_decisions = {
 				tag = JAP
 				tag = TKG
 			}
-			owns = 1654
-			owns = 2525
+			owns = 1649
 			NOT = { has_country_flag = bonin_administration }
 		}
 		allow = {
 			civilized = yes
-			owns = 1654
-			owns = 2525
+			is_greater_power = yes
+			NOT = { owns = 2525 }
 		}
 		effect = {
 			prestige = 1
@@ -1126,12 +1124,14 @@ political_decisions = {
 				tag = JAP
 				tag = TKG
 			}
-			owns = 2521 # Saipan
+			owns = 1649
 			NOT = { has_country_flag = saipan_administration }
 		}
 		allow = {
 			civilized = yes
-			owns = 2521 # Saipan
+			is_greater_power = yes
+			NOT = { owns = 2517 }
+			NOT = { owns = 2521 }
 		}
 		effect = {
 			prestige = 1
@@ -1146,8 +1146,13 @@ political_decisions = {
 				change_province_name = "Omiyato"
 			}
 			2521 = {
+				owner = {
+					relation = { who = THIS value = -200 }
+				}
 				life_rating = 5
+				secede_province = THIS
 				add_core = THIS
+				remove_core = PHL
 				state_scope = {
 					change_region_name = "Saipan"
 				}
