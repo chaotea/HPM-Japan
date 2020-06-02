@@ -1085,6 +1085,45 @@ political_decisions = {
 			}
 		}
 	}
+	occupy_the_bonin_islands = {
+		picture = conquest
+		potential = {
+			OR = {
+				tag = JAP
+				tag = TKG
+			}
+			NOT = { has_country_flag = occupied_the_bonin_islands }
+		}
+		allow = {
+			civilized = yes
+			is_greater_power = yes
+			owns = 1654
+		}
+		effect = {
+			badboy = 1
+			set_country_flag = occupied_the_bonin_islands
+			random_owned = { # Marcus
+				limit = { 2525 = { empty = yes } }
+				2525 = { secede_province = THIS }
+			}
+			2517 = { # Guam
+				owner = {
+					relation = { who = THIS value = -200 }
+				}
+			}
+			2517 = {
+				secede_province = THIS
+			}
+			2521 = { # Saipan
+				owner = {
+					relation = { who = THIS value = -200 }
+				}
+			}
+			2521 = {
+				secede_province = THIS
+			}
+		}
+	}
 	bonin_administration = {
 		picture = meiji_court
 		potential = {
@@ -1092,72 +1131,46 @@ political_decisions = {
 				tag = JAP
 				tag = TKG
 			}
-			owns = 1649
+			has_country_flag = occupied_the_bonin_islands
 			NOT = { has_country_flag = bonin_administration }
 		}
 		allow = {
 			civilized = yes
 			is_greater_power = yes
-			NOT = { owns = 2525 }
+			owns = 1654 # Bonin
+			owns = 2525 # Marcus
+			owns = 2517 # Guam
+			owns = 2521 # Saipan
 		}
 		effect = {
 			prestige = 1
+			set_country_flag = bonin_administration
 			1654 = {
 				life_rating = 20
 				change_province_name = "Io To"
 			}
 			2525 = {
-				life_rating = 25
 				add_core = THIS
+				life_rating = 25
 				change_province_name = "Minami Torishima"
 				state_scope = {
 					change_region_name = "Ogasawara"
 				}
 			}
-			set_country_flag = bonin_administration
-		}
-	}
-	saipan_administration = {
-		picture = meiji_court
-		potential = {
-			OR = {
-				tag = JAP
-				tag = TKG
-			}
-			owns = 1649
-			NOT = { has_country_flag = saipan_administration }
-		}
-		allow = {
-			civilized = yes
-			is_greater_power = yes
-			NOT = { owns = 2517 }
-			NOT = { owns = 2521 }
-		}
-		effect = {
-			prestige = 1
 			2517 = {
-				owner = {
-					relation = { who = THIS value = -200 }
-				}
-				life_rating = 10
-				secede_province = THIS
 				add_core = THIS
 				remove_core = PHL
+				life_rating = 10
 				change_province_name = "Omiyato"
 			}
-			2521 = {
-				owner = {
-					relation = { who = THIS value = -200 }
-				}
-				life_rating = 5
-				secede_province = THIS
+			2521 = { # Saipan
 				add_core = THIS
 				remove_core = PHL
+				life_rating = 5
 				state_scope = {
 					change_region_name = "Saipan"
 				}
 			}
-			set_country_flag = saipan_administration
 		}
 	}
 	taiwan_administration = {
