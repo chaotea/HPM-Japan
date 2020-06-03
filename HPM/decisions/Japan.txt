@@ -1952,6 +1952,7 @@ political_decisions = {
 			any_owned_province = {
 				is_core = JAP
 				NOT = { has_province_modifier = plantation }
+				NOT = { has_province_modifier = treaty_port }
 			}
 		}
 		allow = {
@@ -1962,6 +1963,7 @@ political_decisions = {
 				limit = {
 					is_core = JAP
 					NOT = { has_province_modifier = plantation }
+					NOT = { has_province_modifier = treaty_port }
 				}
 				add_province_modifier = { name = plantation duration = -1 }
 			}
