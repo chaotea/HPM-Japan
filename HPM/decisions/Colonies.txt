@@ -471,8 +471,8 @@ political_decisions = {
         picture = coffee_in_colombia
         potential = {
             OR = {
-                1485 = { owned_by = THIS NOT = { has_province_modifier = plantation } }
-                2681 = { owned_by = THIS NOT = { has_province_modifier = plantation } }
+                1485 = { owned_by = THIS NOT = { is_core = JAP } NOT = { has_province_modifier = plantation } }
+                2681 = { owned_by = THIS NOT = { is_core = JAP } NOT = { has_province_modifier = plantation } }
                 any_owned_province = {
                     is_core = HND
                     NOT = { terrain = small_island }
@@ -485,6 +485,7 @@ political_decisions = {
                 }
                 any_owned_province = {
                     is_core = PHL
+					NOT = { is_core = JAP }
                     NOT = { terrain = small_island }
                     NOT = { terrain = desert }
                     NOT = { terrain = semidesert }
@@ -530,6 +531,7 @@ political_decisions = {
                 }
                 any_owned_province = {
                     is_core = KOR
+					NOT = { is_core = JAP }
                     NOT = { terrain = small_island }
                     NOT = { terrain = desert }
                     NOT = { terrain = semidesert }
@@ -554,6 +556,7 @@ political_decisions = {
             any_owned = {
                 limit = {
                     NOT = { has_province_modifier = plantation }
+					NOT = { is_core = JAP }
                     OR = {
                         province_id = 1485
                         province_id = 2681
@@ -578,6 +581,7 @@ political_decisions = {
                 limit = {
                     NOT = { has_province_modifier = plantation }
                     is_core = PHL
+					NOT = { is_core = JAP }
                     NOT = { terrain = small_island }
                     NOT = { terrain = desert }
                     NOT = { terrain = semidesert }
@@ -638,6 +642,7 @@ political_decisions = {
                 limit = {
                     NOT = { has_province_modifier = plantation }
                     is_core = KOR
+					NOT = { is_core = JAP }
                     NOT = { terrain = small_island }
                     NOT = { terrain = desert }
                     NOT = { terrain = semidesert }
